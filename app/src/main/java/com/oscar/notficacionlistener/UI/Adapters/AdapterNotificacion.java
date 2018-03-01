@@ -1,10 +1,12 @@
 package com.oscar.notficacionlistener.UI.Adapters;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.oscar.notficacionlistener.IO.Model.NotificacionTabla;
 import com.oscar.notficacionlistener.R;
@@ -37,10 +39,16 @@ public class AdapterNotificacion extends RecyclerView.Adapter<ViewHolderNotifica
 
     @Override
     public void onBindViewHolder(ViewHolderNotificacion holder, int position) {
-        NotificacionTabla item=getItem(position);
+      final   NotificacionTabla item=getItem(position);
         holder.tvTitulo.setText(item.getTitulo());
         holder.tvDescripcion.setText(item.getDescripcion());
         holder.tvPaquete.setText(item.getPaquete());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(context).setTitle("JSON").setMessage(item.getData()).create().show();
+            }
+        });
     }
 
     @Override

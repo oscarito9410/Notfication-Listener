@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements NotificationPrese
         presenter=new NotificationPresenter();
         presenter.setView(this);
         presenter.loadNotificaciones();
-        sendNotification(this,"Prueba");
     }
 
 
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NotificationPrese
                 startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
                 break;
             case R.id.action_update:
+                sendNotification(this,"Prueba");
                 presenter.loadNotificaciones();
                 break;
             case R.id.action_eliminar:

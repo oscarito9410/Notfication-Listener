@@ -9,6 +9,6 @@ import java.util.ArrayList;
  */
 
 public interface NotificationInteractor {
-     void agregarNotificacion(String title,  String descripcion,String paquete,boolean toWebService);
+     void agregarNotificacion(String title,  String descripcion,String paquete,String json,boolean toWebService);
      void loadNotificaciones();
 }

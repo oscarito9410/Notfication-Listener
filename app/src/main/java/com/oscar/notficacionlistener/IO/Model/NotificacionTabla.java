@@ -10,21 +10,26 @@ import java.util.Date;
  */
 @DatabaseTable(tableName = "NotificacionTabla")
 public class NotificacionTabla {
-    public static final String _ID="_ID";
-    public static final String TITULO="TITULO";
-    public static final String DESCRIPCION="DESCRIPCION";
-    public static final String PAQUETE="PAQUETE";
-    public static final String FECHA="FECHA_HORA";
-    public static final String ENVIADO="ENVIADO";
+    public static final String _ID = "_ID";
+    public static final String TITULO = "TITULO";
+    public static final String DESCRIPCION = "DESCRIPCION";
+    public static final String PAQUETE = "PAQUETE";
+    public static final String FECHA = "FECHA_HORA";
+    public static final String ENVIADO = "ENVIADO";
+    public static final String DATA = "DATA";
 
-    @DatabaseField(generatedId = true,columnName = _ID)
+    @DatabaseField(generatedId = true, columnName = _ID)
     private int id;
     @DatabaseField(columnName = TITULO)
     private String titulo;
-    @DatabaseField(columnName=DESCRIPCION)
+    @DatabaseField(columnName = DESCRIPCION)
     private String descripcion;
     @DatabaseField(columnName = PAQUETE)
     private String paquete;
+
+    @DatabaseField(columnName = DATA)
+    private String data;
+
     @DatabaseField(columnName = FECHA)
     private Date fecha;
 
@@ -32,51 +37,59 @@ public class NotificacionTabla {
     private boolean enviado;
 
 
-    public int getId() {
+    public int getId () {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId (int id) {
         this.id = id;
     }
 
-    public String getTitulo() {
+    public String getTitulo () {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
+    public void setTitulo (String titulo) {
         this.titulo = titulo;
     }
 
-    public String getDescripcion() {
+    public String getDescripcion () {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void setDescripcion (String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public String getPaquete() {
+    public String getPaquete () {
         return paquete;
     }
 
-    public void setPaquete(String paquete) {
+    public void setPaquete (String paquete) {
         this.paquete = paquete;
     }
 
-    public Date getFecha() {
+    public Date getFecha () {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha (Date fecha) {
         this.fecha = fecha;
     }
 
-    public boolean isEnviado() {
+    public boolean isEnviado () {
         return enviado;
     }
 
-    public void setEnviado(boolean enviado) {
+    public void setEnviado (boolean enviado) {
         this.enviado = enviado;
+    }
+
+    public String getData () {
+        return data;
+    }
+
+    public void setData (String data) {
+        this.data = data;
     }
 }

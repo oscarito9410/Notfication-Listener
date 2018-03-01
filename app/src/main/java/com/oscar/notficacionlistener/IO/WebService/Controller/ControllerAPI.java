@@ -38,13 +38,11 @@ public class ControllerAPI {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 if(response.isSuccessful()){
-                    if(response.code()==200) {
                         Utilerias.sendNotification(ctx,"Enviado a server notificacion");
-                    }
-                    else if(response.code()==503){
-                        Utilerias.sendNotification(ctx,"Error 503 envio a server");
-                        recibirNotificacion(notificacion);
-                    }
+                }
+                else if(response.code()==503){
+                    Utilerias.sendNotification(ctx,"Error 503 envio a server");
+                    recibirNotificacion(notificacion);
                 }
             }
 
