@@ -55,9 +55,7 @@ public class NotificationListenerSismos extends NotificationListenerService impl
                     String titulo = extras.containsKey("android.title") ? extras.getString("android.title") : "";
                     String descripcion = extras.containsKey("android.text") ? extras.getString("android.text") : "";
                     if (!TextUtils.isEmpty(descripcion)) {
-                        if (packageName.equalsIgnoreCase(Contants.SKY_ALERT)) {
-                            presenter.agregarNotificacion(titulo, descripcion, packageName, "", true);
-                        } else if (packageName.equalsIgnoreCase(Contants.TWITTER_PACKAGE_NAME) && titulo.equalsIgnoreCase(Contants.SAXSMEX_TWITTER)) {
+                        if (packageName.equalsIgnoreCase(Contants.TWITTER_PACKAGE_NAME) && titulo.equalsIgnoreCase(Contants.SAXSMEX_TWITTER)) {
                             boolean toWebSeviceDetectado = descripcion.toLowerCase().contains("sismo detectado") && descripcion.toLowerCase().contains("#tenemossismo");
                             boolean toWebServiceAlerta = descripcion.toLowerCase().contains("#tenemosalerta") && descripcion.toLowerCase().contains("anticipación") && descripcion.toLowerCase().contains("pública");
                             presenter.agregarNotificacion(titulo, descripcion, packageName, "", toWebSeviceDetectado || toWebServiceAlerta);
