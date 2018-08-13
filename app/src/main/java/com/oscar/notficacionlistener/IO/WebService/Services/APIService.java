@@ -1,5 +1,9 @@
 package com.oscar.notficacionlistener.IO.WebService.Services;
-import com.oscar.notficacionlistener.IO.WebService.Model.*;
+
+import com.oscar.notficacionlistener.IO.WebService.Model.JsonResponse;
+import com.oscar.notficacionlistener.IO.WebService.Model.Notificacion;
+import com.oscar.notficacionlistener.IO.WebService.Model.NotificationUsuario;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -10,5 +14,8 @@ import retrofit2.http.POST;
 
 public interface APIService {
     @POST("recibirNotificacion")
-    Call<JsonResponse>recibiNotificacion(@Body Notificacion notificacion);
+    Call <JsonResponse> recibiNotificacion (@Body Notificacion notificacion);
+
+    @POST("notificarUsuario")
+    Call <JsonResponse> notificarUsuario (@Body NotificationUsuario notificationUsuario);
 }

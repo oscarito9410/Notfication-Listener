@@ -1,6 +1,7 @@
 package com.oscar.notficacionlistener.IO.Interactor;
 
 import com.oscar.notficacionlistener.IO.Model.NotificacionTabla;
+import com.oscar.notficacionlistener.IO.WebService.Model.NotificationUsuario;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,10 @@ import java.util.ArrayList;
  */
 
 public interface NotificationInteractor {
-     void agregarNotificacion(String title,  String descripcion,String paquete,String json,boolean toWebService);
-     void loadNotificaciones();
+
+    void enviarNotificacion (NotificationUsuario notificationUsuario);
+
+    void agregarNotificacion (String title, String descripcion, String paquete, String json, boolean toWebService, boolean toDBLocal);
+
+    void loadNotificaciones ();
 }

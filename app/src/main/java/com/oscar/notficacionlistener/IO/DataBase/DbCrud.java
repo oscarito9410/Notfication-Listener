@@ -17,38 +17,43 @@ import java.util.Date;
 public class DbCrud {
     private DbHelper dbHelper;
     private Context context;
-    public DbCrud(Context context){
-        this.context=context;
+
+    public DbCrud (Context context) {
+        this.context = context;
     }
-    public DbHelper getDbHelper() {
-        if(dbHelper==null){
-            dbHelper= OpenHelperManager.getHelper(this.context,DbHelper.class);
+
+    public DbHelper getDbHelper () {
+        if (dbHelper == null) {
+            dbHelper = OpenHelperManager.getHelper(this.context, DbHelper.class);
         }
         return dbHelper;
     }
-    public void addNotificacion(NotificacionTabla notificacion){
+
+    public void addNotificacion (NotificacionTabla notificacion) {
         try {
-            Dao dao=getDbHelper().getNotificacionDao();
+            Dao dao = getDbHelper().getNotificacionDao();
             dao.create(notificacion);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void eliminarNotificaciones(){
+
+    public void eliminarNotificaciones () {
         try {
-            Dao dao=getDbHelper().getNotificacionDao();
+            Dao dao = getDbHelper().getNotificacionDao();
             dao.executeRawNoArgs("delete from NotificacionTabla");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public ArrayList<NotificacionTabla> getNotificaciones(){
-        ArrayList<NotificacionTabla> notificacionTablaArrayList=null;
-        ArrayList<NotificacionTabla>notificacionFiltrada=new ArrayList<>();
+
+    public ArrayList <NotificacionTabla> getNotificaciones () {
+        ArrayList <NotificacionTabla> notificacionTablaArrayList = null;
+        ArrayList <NotificacionTabla> notificacionFiltrada = new ArrayList <>();
         try {
-            notificacionTablaArrayList= (ArrayList<NotificacionTabla>)getDbHelper().getNotificacionDao().queryForAll();
-            for(NotificacionTabla item: notificacionTablaArrayList){
-                if(item.getFecha().equals(new Date())) {
+            notificacionTablaArrayList = (ArrayList <NotificacionTabla>) getDbHelper().getNotificacionDao().queryForAll();
+            for (NotificacionTabla item : notificacionTablaArrayList) {
+                if (item.getFecha().equals(new Date())) {
                     notificacionFiltrada.add(item);
                 }
             }

@@ -3,17 +3,16 @@ package com.oscar.notficacionlistener.IO.Presenters;
 import android.util.Log;
 
 import com.oscar.notficacionlistener.ApplicationBase;
-import com.oscar.notficacionlistener.IO.DataBase.DbCrud;
 import com.oscar.notficacionlistener.IO.Interactor.NotificationInteractor;
 import com.oscar.notficacionlistener.IO.Model.NotificacionTabla;
 import com.oscar.notficacionlistener.IO.WebService.Controller.ControllerAPI;
 import com.oscar.notficacionlistener.IO.WebService.Model.Notificacion;
+import com.oscar.notficacionlistener.IO.WebService.Model.NotificationUsuario;
+import com.oscar.notficacionlistener.Utils.Contants;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import com.oscar.notficacionlistener.Utils.Contants;
 
 /**
  * Created by oemy9 on 15/09/2017.
@@ -24,7 +23,12 @@ public class NotificationPresenter extends PresenterBase <NotificationPresenter.
     private static final String TAG = "NotificationPresenter";
 
     @Override
-    public void agregarNotificacion (String title, String descripcion, String paquete, String json, boolean toWebService) {
+    public void enviarNotificacion (NotificationUsuario notificationUsuario) {
+        ApplicationBase.getIntance().getControllerAPI().enviarNotificacion(notificationUsuario);
+    }
+
+    @Override
+    public void agregarNotificacion (String title, String descripcion, String paquete, String json, boolean toWebService, boolean toDBLocal) {
         NotificacionTabla notificacion = new NotificacionTabla();
         notificacion.setTitulo(title);
         notificacion.setDescripcion(descripcion);
@@ -44,7 +48,8 @@ public class NotificationPresenter extends PresenterBase <NotificationPresenter.
             controllerAPI.recibirNotificacion(notificacionWs);
             Log.i(TAG, "AGREGANDO NOTIFICACION");
         }
-        ApplicationBase.getIntance().getDbCrud().addNotificacion(notificacion);
+        if (toDBLocal)
+            ApplicationBase.getIntance().getDbCrud().addNotificacion(notificacion);
 
     }
 
