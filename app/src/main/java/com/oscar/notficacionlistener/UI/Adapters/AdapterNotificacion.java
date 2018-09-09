@@ -21,6 +21,7 @@ import com.oscar.notficacionlistener.R;
 import com.oscar.notficacionlistener.UI.ViewHolders.ViewHolderNotificacion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by oemy9 on 16/09/2017.
@@ -37,6 +38,7 @@ public class AdapterNotificacion extends RecyclerView.Adapter <ViewHolderNotific
         this.context = context;
         this.list = list;
         this.layoutInflater = LayoutInflater.from(this.context);
+        Collections.reverse(list);
     }
 
 
@@ -95,7 +97,7 @@ public class AdapterNotificacion extends RecyclerView.Adapter <ViewHolderNotific
                                         public void onClick (DialogInterface dialog, int which) {
                                             NotificationPresenter presenter = new NotificationPresenter();
                                             NotificationUsuario notificationUsuario = new NotificationUsuario();
-                                            notificationUsuario.setMensaje(notification.getTitulo());
+                                            notificationUsuario.setMensaje(notification.getDescripcion());
                                             notificationUsuario.setSismo(which == 0 ? true : false);
                                             presenter.enviarNotificacion(notificationUsuario);
                                             dialog.dismiss();
