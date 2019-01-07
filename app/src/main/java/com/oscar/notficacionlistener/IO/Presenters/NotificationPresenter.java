@@ -51,6 +51,7 @@ public class NotificationPresenter extends PresenterBase <NotificationPresenter.
         if (toDBLocal)
             ApplicationBase.getIntance().getDbCrud().addNotificacion(notificacion);
 
+
     }
 
 
@@ -61,7 +62,6 @@ public class NotificationPresenter extends PresenterBase <NotificationPresenter.
 
     //TODO AGREGAR ELIMINAR AQUI
     public void eliminar () {
-
         //ApplicationBase.getIntance().getDbCrud().eliminarNotificaciones();
     }
 

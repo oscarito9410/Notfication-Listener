@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.oscar.notficacionlistener.IO.WebService.Model.JsonResponse;
+import com.oscar.notficacionlistener.IO.WebService.Model.NoticiaListResponse;
 import com.oscar.notficacionlistener.IO.WebService.Model.Notificacion;
 import com.oscar.notficacionlistener.IO.WebService.Model.NotificationUsuario;
 import com.oscar.notficacionlistener.IO.WebService.Services.APIService;
@@ -26,10 +27,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ControllerAPI {
+
     private APIService service;
     private Context ctx;
 
-    public ControllerAPI (final Context ctx) {
+    public ControllerAPI(final Context ctx) {
         this.ctx = ctx;
         Gson gson = new GsonBuilder().setLenient().create();
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS).readTimeout(5, TimeUnit.SECONDS).build();
@@ -37,26 +39,27 @@ public class ControllerAPI {
         this.service = retrofit.create(APIService.class);
     }
 
-    public void enviarNotificacion (NotificationUsuario notificationUsuario) {
-        service.notificarUsuario(notificationUsuario).enqueue(new Callback <JsonResponse>() {
+    public void enviarNotificacion(NotificationUsuario notificationUsuario) {
+        Toast.makeText(ctx, "Enviando......", Toast.LENGTH_SHORT).show();
+        service.notificarUsuario(notificationUsuario).enqueue(new Callback<JsonResponse>() {
             @Override
-            public void onResponse (Call <JsonResponse> call, Response <JsonResponse> response) {
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ctx, "Enviado correctactemte", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure (Call <JsonResponse> call, Throwable t) {
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
                 Toast.makeText(ctx, "Error al enviar", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public void recibirNotificacion (final Notificacion notificacion) {
-        service.recibiNotificacion(notificacion).enqueue(new Callback <JsonResponse>() {
+    public void recibirNotificacion(final Notificacion notificacion) {
+        service.recibiNotificacion(notificacion).enqueue(new Callback<JsonResponse>() {
             @Override
-            public void onResponse (Call <JsonResponse> call, Response <JsonResponse> response) {
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 if (response.isSuccessful()) {
                     Utilerias.sendNotification(ctx, "Enviado a server notificacion");
                 } else if (response.code() == 503) {
@@ -66,9 +69,14 @@ public class ControllerAPI {
             }
 
             @Override
-            public void onFailure (Call <JsonResponse> call, Throwable t) {
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
 
             }
         });
+    }
+
+    public void obtenerNoticias(Callback<NoticiaListResponse> call)
+    {
+        service.noticias().enqueue(call);
     }
 }
