@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
         mNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         mNavigationView.setOnNavigationItemSelectedListener(this);
-        pushFragment(FragmentNews.newInstance(), true);
+        pushFragment(FragmentHome.newInstance(), true);
     }
 
 

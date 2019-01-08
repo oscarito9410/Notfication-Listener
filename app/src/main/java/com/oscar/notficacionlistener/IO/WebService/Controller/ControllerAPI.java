@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.oscar.notficacionlistener.IO.WebService.Model.JsonResponse;
+import com.oscar.notficacionlistener.IO.WebService.Model.NoticiaItem;
 import com.oscar.notficacionlistener.IO.WebService.Model.NoticiaListResponse;
 import com.oscar.notficacionlistener.IO.WebService.Model.Notificacion;
 import com.oscar.notficacionlistener.IO.WebService.Model.NotificationUsuario;
@@ -34,7 +35,7 @@ public class ControllerAPI {
     public ControllerAPI(final Context ctx) {
         this.ctx = ctx;
         Gson gson = new GsonBuilder().setLenient().create();
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS).readTimeout(5, TimeUnit.SECONDS).build();
+        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(90, TimeUnit.SECONDS).readTimeout(90, TimeUnit.SECONDS).build();
         Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson)).client(client).baseUrl(Contants.URL_BASE).build();
         this.service = retrofit.create(APIService.class);
     }
@@ -75,8 +76,11 @@ public class ControllerAPI {
         });
     }
 
-    public void obtenerNoticias(Callback<NoticiaListResponse> call)
-    {
+    public void obtenerNoticias(Callback<NoticiaListResponse> call) {
         service.noticias().enqueue(call);
+    }
+
+    public void agregarNoticia(NoticiaItem item, Callback<JsonResponse> callback) {
+        service.agregarNoticia(item).enqueue(callback);
     }
 }
