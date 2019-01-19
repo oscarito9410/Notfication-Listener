@@ -17,6 +17,7 @@ import com.oscar.notficacionlistener.Utils.Utilerias;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +36,12 @@ public class ControllerAPI {
     public ControllerAPI(final Context ctx) {
         this.ctx = ctx;
         Gson gson = new GsonBuilder().setLenient().create();
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(90, TimeUnit.SECONDS).readTimeout(90, TimeUnit.SECONDS).build();
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(90, TimeUnit.SECONDS)
+                .addInterceptor(loggingInterceptor).build();
         Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson)).client(client).baseUrl(Contants.URL_BASE).build();
         this.service = retrofit.create(APIService.class);
     }

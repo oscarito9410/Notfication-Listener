@@ -61,8 +61,6 @@ public class AdapterNoticiaRecycler extends RecyclerView.Adapter<AdapterNoticiaR
         });
 
         final NoticiaItem selectedItem = (NoticiaItem) getItem(position);
-        holderNoticia.btnVerTodos.setVisibility(View.GONE);
-        holderNoticia.btnVerDetalles.setVisibility(View.VISIBLE);
         TextCrawler textCrawler = new TextCrawler();
         textCrawler.makePreview(new TextCrawler.LinkPreviewCallback() {
             @Override
@@ -108,8 +106,7 @@ public class AdapterNoticiaRecycler extends RecyclerView.Adapter<AdapterNoticiaR
         public LoaderImageView imgNoticia;
         public LoaderTextView tvTitulo;
         public LoaderTextView tvDescripcion;
-        public Button btnVerDetalles;
-        public Button btnVerTodos;
+
 
         public ViewHolderNoticia(View itemView) {
             super(itemView);

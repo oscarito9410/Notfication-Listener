@@ -14,6 +14,7 @@ import com.oscar.notficacionlistener.IO.WebService.Model.NoticiaListResponse;
 import com.oscar.notficacionlistener.R;
 import com.oscar.notficacionlistener.UI.Adapters.AdapterNoticiaRecycler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import retrofit2.Response;
  * Created by Oscar Emilio Pérez Mtz on 06/01/2019.
  * operez@na-at.com.mx
  */
-public class FragmentNews extends FragmentBase implements Callback<NoticiaListResponse>,AdapterNoticiaRecycler.OnItemClickListener {
+public class FragmentNews extends FragmentBase implements Callback<NoticiaListResponse>, AdapterNoticiaRecycler.OnItemClickListener {
 
     private RecyclerView mRvNews;
     private ProgressDialog mProgressDialog;
@@ -75,7 +76,7 @@ public class FragmentNews extends FragmentBase implements Callback<NoticiaListRe
 
 
     private void setAdapter(List<NoticiaItem> lists) {
-        AdapterNoticiaRecycler adpt = new AdapterNoticiaRecycler(getContext(), (ArrayList<NoticiaItem>) lists,this);
+        AdapterNoticiaRecycler adpt = new AdapterNoticiaRecycler(getContext(), (ArrayList<NoticiaItem>) lists, this);
         mRvNews.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvNews.setAdapter(adpt);
         Toast.makeText(getContext(), "Size of list is: " + String.valueOf(lists.size()), Toast.LENGTH_SHORT).show();
@@ -97,7 +98,16 @@ public class FragmentNews extends FragmentBase implements Callback<NoticiaListRe
         ApplicationBase.getIntance().getControllerAPI().agregarNoticia(item, new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                Toast.makeText(getContext(), response.body().getMensaje(), Toast.LENGTH_SHORT).show();
+                if (response.body() != null)
+                    Toast.makeText(getContext(), response.body().getMensaje(), Toast.LENGTH_SHORT).show();
+                else {
+                    try {
+                        Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 hideProgressDialog();
             }
 

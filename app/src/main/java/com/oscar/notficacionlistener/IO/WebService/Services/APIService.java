@@ -27,6 +27,6 @@ public interface APIService {
     @GET("noticias")
     Call<NoticiaListResponse> noticias();
 
-    @PUT("noticias/agregar")
+    @POST("noticias/agregar")
     Call<JsonResponse> agregarNoticia(@Body NoticiaItem noticia);
 }

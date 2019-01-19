@@ -11,22 +11,25 @@ public class NoticiaItem {
 
     @SerializedName("title")
     @Expose
-    public String title;
+    private String title;
     @SerializedName("link")
     @Expose
-    public String link;
+    private String link;
     @SerializedName("guid")
     @Expose
-    public Object guid;
+    private Object guid;
     @SerializedName("pubDate")
     @Expose
-    public String pubDate;
+    private String pubDate;
     @SerializedName("description")
     @Expose
-    public String description;
+    private String description;
     @SerializedName("token")
     @Expose
-    public String token;
+    private String token;
+    @SerializedName("urlImage")
+    @Expose
+    private String utlImage;
 
     public String getTitle() {
         return title;
