@@ -29,7 +29,7 @@ public class NoticiaItem {
     private String token;
     @SerializedName("urlImage")
     @Expose
-    private String utlImage;
+    private String urlImage;
 
     public String getTitle() {
         return title;
@@ -77,5 +77,14 @@ public class NoticiaItem {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

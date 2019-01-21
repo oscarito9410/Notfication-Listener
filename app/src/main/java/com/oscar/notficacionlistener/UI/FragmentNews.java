@@ -30,6 +30,7 @@ public class FragmentNews extends FragmentBase implements Callback<NoticiaListRe
 
     private RecyclerView mRvNews;
     private ProgressDialog mProgressDialog;
+    private AdapterNoticiaRecycler mAdpt;
 
     public static FragmentNews newInstance() {
         Bundle args = new Bundle();
@@ -76,9 +77,9 @@ public class FragmentNews extends FragmentBase implements Callback<NoticiaListRe
 
 
     private void setAdapter(List<NoticiaItem> lists) {
-        AdapterNoticiaRecycler adpt = new AdapterNoticiaRecycler(getContext(), (ArrayList<NoticiaItem>) lists, this);
+        mAdpt = new AdapterNoticiaRecycler(getContext(), (ArrayList<NoticiaItem>) lists, this);
         mRvNews.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvNews.setAdapter(adpt);
+        mRvNews.setAdapter(mAdpt);
         Toast.makeText(getContext(), "Size of list is: " + String.valueOf(lists.size()), Toast.LENGTH_SHORT).show();
     }
 
@@ -98,9 +99,10 @@ public class FragmentNews extends FragmentBase implements Callback<NoticiaListRe
         ApplicationBase.getIntance().getControllerAPI().agregarNoticia(item, new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                if (response.body() != null)
+                if (response.body() != null) {
                     Toast.makeText(getContext(), response.body().getMensaje(), Toast.LENGTH_SHORT).show();
-                else {
+                    loadNews();
+                } else {
                     try {
                         Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {

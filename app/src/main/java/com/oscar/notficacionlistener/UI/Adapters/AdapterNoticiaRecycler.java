@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.oscar.notficacionlistener.IO.WebService.Model.NoticiaItem;
 import com.oscar.notficacionlistener.R;
@@ -55,7 +54,7 @@ public class AdapterNoticiaRecycler extends RecyclerView.Adapter<AdapterNoticiaR
         holderNoticia.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mOnItemClickListener!=null)
+                if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClickListener((NoticiaItem) getItem(position));
             }
         });
@@ -76,7 +75,9 @@ public class AdapterNoticiaRecycler extends RecyclerView.Adapter<AdapterNoticiaR
                 if (!isNull) {
                     if (!sourceContent.getImages().isEmpty()) {
                         Picasso.with(context).load(sourceContent.getImages().get(0)).into(holderNoticia.imgNoticia);
+                        selectedItem.setUrlImage(sourceContent.getImages().get(0));
                     }
+
                     holderNoticia.tvTitulo.setText(sourceContent.getTitle());
                     holderNoticia.tvDescripcion.setText(sourceContent.getDescription());
                 }
