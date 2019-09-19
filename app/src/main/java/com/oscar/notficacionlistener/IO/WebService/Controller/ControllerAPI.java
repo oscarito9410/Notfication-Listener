@@ -69,9 +69,6 @@ public class ControllerAPI {
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 if (response.isSuccessful()) {
                     Utilerias.sendNotification(ctx, "Enviado a server notificacion");
-                } else if (response.code() == 503) {
-                    Utilerias.sendNotification(ctx, "Error 503 envio a server");
-                    recibirNotificacion(notificacion);
                 }
             }
 

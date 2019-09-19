@@ -98,7 +98,7 @@ public class AdapterNotificacion extends RecyclerView.Adapter <ViewHolderNotific
                                             NotificationPresenter presenter = new NotificationPresenter();
                                             NotificationUsuario notificationUsuario = new NotificationUsuario();
                                             notificationUsuario.setMensaje(notification.getDescripcion());
-                                            notificationUsuario.setSismo(which == 0 ? true : false);
+                                            notificationUsuario.setSismo(which == 0);
                                             presenter.enviarNotificacion(notificationUsuario);
                                             dialog.dismiss();
                                         }

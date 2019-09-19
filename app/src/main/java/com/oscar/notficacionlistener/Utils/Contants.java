@@ -13,4 +13,5 @@ public class Contants {
     public static final String TWITTER_PACKAGE_NAME = "com.twitter.android";
     public static final String SAXSMEX_TWITTER = "AlertaSísmica SASMEX";
     public static final String MY_PAQUETE = "com.oscar.notficacionlistener";
+    public static final String TELEGRAM_PACKAGE_NAME = "org.telegram.messenger";
 }

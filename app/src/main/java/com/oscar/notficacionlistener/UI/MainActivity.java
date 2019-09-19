@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 pushFragment(FragmentHome.newInstance(), true);
                 break;
             case R.id.navigation_dashboard:
-                pushFragment(FragmentNews.newInstance(), true);
+                pushFragment(FragmentNews.Companion.newInstance(), true);
                 break;
         }
         return true;

@@ -59,6 +59,8 @@ public class NotificationListenerSismos extends NotificationListenerService impl
                             }
                         } else if (packageName.equalsIgnoreCase(Contants.MY_PAQUETE)) {
                             presenter.agregarNotificacion(titulo, descripcion, packageName, "", false, true);
+                        } else if (packageName.equalsIgnoreCase(Contants.TELEGRAM_PACKAGE_NAME)) {
+                            presenter.agregarNotificacion(titulo, descripcion, packageName, "", true, true);
                         }
                     }
 
