@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.oscar.notficacionlistener.ApplicationBase;
@@ -86,18 +87,21 @@ public class AdapterNotificacion extends RecyclerView.Adapter <ViewHolderNotific
 
     private void sendNotificaction (final NotificacionTabla notification) {
         if (!TextUtils.isEmpty(notification.getTitulo())) {
+            final EditText edittext = new EditText(context);
+            edittext.setText(notification.getDescripcion());
+            edittext.setSelectAllOnFocus(true);
             new AlertDialog.Builder(context).setTitle("Pregunta").setMessage("¿Estás seguro de enviar esto como notificación?")
+                    .setView(edittext)
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick (DialogInterface dialog, int which) {
-
                             new AlertDialog.Builder(context).setTitle("¿Es sismo?")
                                     .setSingleChoiceItems(new CharSequence[]{"SI", "NO"}, 0, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick (DialogInterface dialog, int which) {
                                             NotificationPresenter presenter = new NotificationPresenter();
                                             NotificationUsuario notificationUsuario = new NotificationUsuario();
-                                            notificationUsuario.setMensaje(notification.getDescripcion());
+                                            notificationUsuario.setMensaje(edittext.getText().toString());
                                             notificationUsuario.setSismo(which == 0);
                                             presenter.enviarNotificacion(notificationUsuario);
                                             dialog.dismiss();

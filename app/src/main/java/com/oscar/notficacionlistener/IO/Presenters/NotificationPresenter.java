@@ -46,8 +46,8 @@ public class NotificationPresenter extends PresenterBase <NotificationPresenter.
             notificacion.setData(json);
             ControllerAPI controllerAPI = new ControllerAPI(getView().context());
             controllerAPI.recibirNotificacion(notificacionWs);
-            Log.i(TAG, "AGREGANDO NOTIFICACION");
         }
+
         if (toDBLocal)
             ApplicationBase.getIntance().getDbCrud().addNotificacion(notificacion);
 
