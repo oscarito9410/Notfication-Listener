@@ -34,13 +34,13 @@ class NoticiaItem {
     var urlImage: String? = null
 
     fun getDateFromPubDate(): Date? {
-        val simpleDateFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
         return simpleDateFormat.parse(pubDate)
     }
 
     fun getReadeablePubdDate(): String? {
         return getDateFromPubDate()?.run {
-            val simpleDateFormat = SimpleDateFormat(" dd MMM yyyy HH:mm:ss", Locale.getDefault())
+            val simpleDateFormat = SimpleDateFormat(" dd MMM yyyy HH:mm:ss", Locale.US)
             simpleDateFormat.format(this)
         }
     }

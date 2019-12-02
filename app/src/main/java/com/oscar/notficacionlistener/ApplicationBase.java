@@ -22,8 +22,8 @@ public class ApplicationBase extends Application {
     }
 
     public static ApplicationBase getIntance() {
-        if(instance==null){
-            instance=new ApplicationBase();
+        if (instance == null) {
+            instance = new ApplicationBase();
         }
         return instance;
     }
@@ -32,7 +32,7 @@ public class ApplicationBase extends Application {
         instance = this;
         context = getApplicationContext();
         controllerAPI = new ControllerAPI(context);
-        dbCrud=new DbCrud(context);
+        dbCrud = new DbCrud(context);
     }
 
     public DbCrud getDbCrud() {
@@ -42,5 +42,4 @@ public class ApplicationBase extends Application {
     public ControllerAPI getControllerAPI() {
         return controllerAPI;
     }
-
 }

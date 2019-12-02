@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Notfic.iml" filepath="$PROJECT_DIR$/Notfic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Notfication-Listener.iml" filepath="$PROJECT_DIR$/Notfication-Listener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Notfication-Listener-app.iml" filepath="$PROJECT_DIR$/app/Notfication-Listener-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
